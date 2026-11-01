@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIV-MW</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  margin: 0;
+  text-align: center;
+}
+header {
+  background: #173b70;
+  color: white;
+  padding: 25px;
+}
+main { padding: 20px; }
+button {
+  background: #173b70;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+}
+#books { margin-top: 20px; }
+.book {
+  background: white;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>📚 LIV-MW</h1>
+<p>Tout liv ou yo nan yon sèl kote</p>
+</header>
+<main>
+<h2>Bibliyotèk mwen</h2>
+<input type="file" id="pdf" accept="application/pdf">
+<div id="books"></div>
+</main>
+<script>
+document.getElementById("pdf").onchange = function() {
+  const file = this.files[0];
+  if (!file) return;
+  if (!file.type.includes("pdf")) return;
+  const url = URL.createObjectURL(file);
+  const div = document.createElement("div");
+  div.className = "book";
+  const link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.textContent = "📖 " + file.name;
+  div.appendChild(link);
+  document.getElementById("books").appendChild(div);
+};
+</script>
+</body>
+</html>
